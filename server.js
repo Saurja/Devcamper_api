@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
 const colors = require("colors");
+const errorHandler = require("./middleware/error");
 const connectDB = require("./config/db");
 
 // @description: The path variables are imported here
@@ -14,7 +15,7 @@ const app = express();
 
 // @Description: Body parser
 app.use(express.json());
-app.use(express.urlencoded());
+// app.use(express.urlencoded());
 
 // @Description: Connect to database
 connectDB();
@@ -26,6 +27,9 @@ if (process.env.NODE_ENV === "development") {
 
 // @description:  The router is mounted here
 app.use("/api/v1/bootcamps", bootcamps);
+
+// @description: Error handling Middleware
+app.use(errorHandler);
 
 // @description:  The servers runtimes starts here
 const PORT = process.env.PORT || 5000;
