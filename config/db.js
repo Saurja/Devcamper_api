@@ -9,8 +9,7 @@ const connectDB = async () => {
   });
 
   console.log(
-    `MongoDB Database server connected to: ${conn.connection.host}`.bold
-      .brightGreen
+    `MongoDB Database server connected to: ${conn.connection.host}`.blue
   );
 };
 
